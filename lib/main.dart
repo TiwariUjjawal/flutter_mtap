@@ -21,36 +21,60 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text('Hello'),
-              FlatButton(
-                color: Colors.teal,
-                onPressed: () {},
-                child: Text('Click It'),
+      body: Container(
+        padding: EdgeInsets.symmetric(horizontal: 30, vertical: 50),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Center(
+              child: Text(
+                'Login Here',
+                style: TextStyle(
+                    fontSize: 30.0,
+                    fontWeight: FontWeight.normal,
+                    color: Colors.black),
               ),
-              Text('GO'),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text('Hello'),
-              FlatButton(
-                color: Colors.teal,
+            ),
+            SizedBox(
+              height: 50,
+            ),
+            Text(
+              'Username:',
+              style: TextStyle(
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black),
+            ),
+            TextField(
+              keyboardType: TextInputType.text,
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Text(
+              'Password:',
+              style: TextStyle(
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black),
+            ),
+            TextField(),
+            SizedBox(
+              height: 20,
+            ),
+            Row(mainAxisAlignment: MainAxisAlignment.end, children: [
+              RaisedButton(
                 onPressed: () {},
-                child: Text('Click It'),
+                child: Text(
+                  'Login',
+                  style: TextStyle(color: Colors.white),
+                ),
+                color: Colors.teal,
               ),
-              Text('GO'),
-            ],
-          ),
-        ],
+            ]),
+          ],
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.teal,
