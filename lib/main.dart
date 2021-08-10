@@ -4,15 +4,7 @@ void main() => runApp(MaterialApp(
       home: MyApp(),
     ));
 
-class MyApp extends StatefulWidget {
-  @override
-  _MyAppState createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  int label = 0;
-  List<Color> clr = [Colors.amber, Colors.blue, Colors.grey, Colors.cyanAccent];
-
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,20 +21,16 @@ class _MyAppState extends State<MyApp> {
           ),
         ),
       ),
-      body: Container(
-        margin: EdgeInsets.symmetric(vertical: 90, horizontal: 10),
-        color: clr[label%4],
-        child: Center(
-            child: RaisedButton.icon(
-          color: Colors.teal,
-          icon: Icon(Icons.add),
-          label: Text('Clicked $label times'),
-          onPressed: () {
-            setState(() {
-              label += 1;
-            });
-          },
-        )),
+      body: Row(
+        children: [
+          Text('Hello'),
+          OutlinedButton(
+            onPressed: () {},
+            child: Text('Click It'),
+          ),
+          Text('GO'),
+
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.teal,
