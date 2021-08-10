@@ -21,15 +21,35 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      body: Row(
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text('Hello'),
-          OutlinedButton(
-            onPressed: () {},
-            child: Text('Click It'),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text('Hello'),
+              FlatButton(
+                color: Colors.teal,
+                onPressed: () {},
+                child: Text('Click It'),
+              ),
+              Text('GO'),
+            ],
           ),
-          Text('GO'),
-
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text('Hello'),
+              FlatButton(
+                color: Colors.teal,
+                onPressed: () {},
+                child: Text('Click It'),
+              ),
+              Text('GO'),
+            ],
+          ),
         ],
       ),
       floatingActionButton: FloatingActionButton(
