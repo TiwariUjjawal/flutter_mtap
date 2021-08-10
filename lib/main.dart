@@ -11,7 +11,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   int label = 0;
-  List<Color> clr = [Colors.blue, Colors.amber, Colors.grey, Colors.cyanAccent];
+  List<Color> clr = [Colors.amber, Colors.blue, Colors.grey, Colors.cyanAccent];
 
   @override
   Widget build(BuildContext context) {
