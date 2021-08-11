@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mtap/SecondScreen.dart';
 import 'package:flutter_mtap/extract_argument_screen.dart';
 import 'package:flutter_mtap/pass_arguments_screen.dart';
+import 'package:flutter_mtap/selection_screen.dart';
 
 // import 'package:flutter_mtap/switch.dart';
 // import 'package:flutter_mtap/TooltipExample.dart';
@@ -41,51 +42,41 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Home Screen'),
+        title: const Text('Returning Data Demo'),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(
-                  context,
-                  ExtractArgumentsScreen.routeName,
-                  arguments: ScreenArguments(
-                    'Extract Arguments Screen',
-                    'This message is extracted in the build method.',
-                  ),
-                );
-              },
-              child: const Text('Navigate to screen that extracts arguments'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(
-                  context,
-                  PassArgumentsScreen.routeName,
-                  arguments: ScreenArguments(
-                    'Accept Arguments Screen',
-                    'This message is extracted in the onGenerateRoute '
-                        'function.',
-                  ),
-                );
-              },
-              child: const Text('Navigate to a named that accepts arguments'),
-            ),
-          ],
-        ),
+      // Create the SelectionButton widget in the next step.
+      body: const Center(
+        child: SelectionButton(),
       ),
     );
   }
 }
-// Slider
+class SelectionButton extends StatelessWidget {
+  const SelectionButton({Key? key}) : super(key: key);
 
-// Switch
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      onPressed: () {
+        _navigateAndDisplaySelection(context);
+      },
+      child: const Text('Pick an option, any option!'),
+    );
+  }
 
-// Tooltip
-
+  void _navigateAndDisplaySelection(BuildContext context) async {
+    // Navigator.push returns a Future that completes after calling
+    // Navigator.pop on the Selection Screen.
+    final result = await Navigator.push(
+      context,
+      // Create the SelectionScreen in the next step.
+      MaterialPageRoute(builder: (context) => const SelectionScreen()),
+    );
+    ScaffoldMessenger.of(context)
+      ..removeCurrentSnackBar()
+      ..showSnackBar(SnackBar(content: Text('$result')));
+  }
+}
 // class MyApp extends StatefulWidget {
 //   @override
 //   _MyAppState createState() => _MyAppState();
