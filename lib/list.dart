@@ -7,12 +7,10 @@ class List extends StatelessWidget {
     final wordPair = WordPair.random();
     return MaterialApp(
       title: 'Welcome to Flutter',
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('List Generator'),
-        ),
-        body: Center(child: RandomWords()),
+      theme: ThemeData(          // Add the 3 lines from here...
+        primaryColor: Colors.white,
       ),
+      home: RandomWords(),
     );
   }
 }
@@ -25,14 +23,47 @@ class RandomWords extends StatefulWidget {
 }
 
 class _RandomWordsState extends State<RandomWords> {
-  final  _suggestions = <WordPair>[];
+  void _pushSaved() {
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+      final tiles = _saved.map(
+        (WordPair pair) {
+          return ListTile(
+            title: Text(
+              pair.asPascalCase,
+            ),
+          );
+        },
+      );
+      final divided = tiles.isNotEmpty
+          ? ListTile.divideTiles(context: context, tiles: tiles).toList()
+          : <Widget>[];
+      return Scaffold(
+        appBar: AppBar(
+          title: Text('Saved Suggestions'),
+        ),
+        body: ListView(children: divided),
+      );
+    }));
+  }
+
+  final _suggestions = <WordPair>[];
+  final _saved = <WordPair>{};
+
   @override
   Widget build(BuildContext context) {
     final wordPair = WordPair.random();
-    return _buildSuggestions();
+    return Scaffold(
+        appBar: AppBar(
+          title: Text('Startup Name Generator'),
+          actions: [
+            IconButton(icon: Icon(Icons.list), onPressed: _pushSaved),
+          ],
+        ),
+        body: _buildSuggestions());
   }
+
   Widget _buildSuggestions() {
-    return ListView.builder(itemBuilder: (context, i){
+    return ListView.builder(itemBuilder: (context, i) {
       if (i.isOdd) {
         return Divider();
       }
@@ -46,13 +77,25 @@ class _RandomWordsState extends State<RandomWords> {
   }
 
   Widget _buildRow(WordPair pair) {
+    final alreadySaved = _saved.contains(pair);
     return ListTile(
       title: Text(
         pair.asPascalCase,
         style: TextStyle(fontSize: 30),
       ),
+      trailing: Icon(
+        alreadySaved ? Icons.favorite : Icons.favorite_border,
+        color: alreadySaved ? Colors.red : null,
+      ),
+      onTap: () {
+        setState(() {
+          if (alreadySaved) {
+            _saved.remove(pair);
+          } else {
+            _saved.add(pair);
+          }
+        });
+      },
     );
   }
 }
-
-
