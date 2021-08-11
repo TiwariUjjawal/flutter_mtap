@@ -3,84 +3,99 @@ import 'package:flutter_mtap/SecondScreen.dart';
 import 'package:flutter_mtap/extract_argument_screen.dart';
 import 'package:flutter_mtap/pass_arguments_screen.dart';
 import 'package:flutter_mtap/selection_screen.dart';
+import './login_screen.dart';
+import './user_screen.dart';
+import 'package:flutter/material.dart';
+import 'Calc.dart';
+
+void main() => runApp(MaterialApp(
+  // home: TextFormFIELD(),
+  initialRoute: '/',
+  routes: {
+    '/': (context) => LoginScreen(),
+    '/calc_screen': (context) => Calc(),
+  },
+));
+
+
 
 // import 'package:flutter_mtap/switch.dart';
 // import 'package:flutter_mtap/TooltipExample.dart';
 // import './list.dart';
 // import './MySliderApp.dart';
-import './FirstScreen.dart';
-
-class Todo {
-  final String title;
-  final String description;
-
-  const Todo(this.title, this.description);
-}
-
-void main() {
-  runApp(
-    MaterialApp(
-      title: 'Passing Data',
-      home: TodosScreen(
-        todos: List.generate(
-          20,
-              (i) => Todo(
-            'Todo $i',
-            'A description of what needs to be done for Todo $i',
-          ),
-        ),
-      ),
-    ),
-  );
-}
-
-class TodosScreen extends StatelessWidget {
-  const TodosScreen({Key? key, required this.todos}) : super(key: key);
-
-  final List<Todo> todos;
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Todos'),
-      ),
-      body: ListView.builder(
-        itemCount: todos.length,
-        itemBuilder: (context, index) {
-          return ListTile(
-            title: Text(todos[index].title),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => DetailScreen(todos[index]),
-                ),
-              );
-            },
-          );
-        },
-      ),
-    );
-  }
-}
-
-class DetailScreen extends StatelessWidget {
-  final Todo todo;
-  DetailScreen(this.todo);
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(todo.title),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Text(todo.description),
-      ),
-    );
-  }
-}
+// import './FirstScreen.dart';
+//
+// class Todo {
+//   final String title;
+//   final String description;
+//
+//   const Todo(this.title, this.description);
+// }
+//
+// void main() {
+//   runApp(
+//     MaterialApp(
+//       title: 'Passing Data',
+//       home: TodosScreen(
+//         todos: List.generate(
+//           20,
+//               (i) => Todo(
+//             'Todo $i',
+//             'A description of what needs to be done for Todo $i',
+//           ),
+//         ),
+//       ),
+//     ),
+//   );
+// }
+//
+// class TodosScreen extends StatelessWidget {
+//   const TodosScreen({Key? key, required this.todos}) : super(key: key);
+//
+//   final List<Todo> todos;
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: const Text('Todos'),
+//       ),
+//       body: ListView.builder(
+//         itemCount: todos.length,
+//         itemBuilder: (context, index) {
+//           return ListTile(
+//             title: Text(todos[index].title),
+//             onTap: () {
+//               Navigator.push(
+//                 context,
+//                 MaterialPageRoute(
+//                   builder: (context) => DetailScreen(todos[index]),
+//                 ),
+//               );
+//             },
+//           );
+//         },
+//       ),
+//     );
+//   }
+// }
+//
+// class DetailScreen extends StatelessWidget {
+//   final Todo todo;
+//   DetailScreen(this.todo);
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text(todo.title),
+//       ),
+//       body: Padding(
+//         padding: const EdgeInsets.all(16.0),
+//         child: Text(todo.description),
+//       ),
+//     );
+//   }
+// }
 
 // void main() => runApp(MaterialApp(
 //       title: 'Routes',
@@ -463,65 +478,65 @@ class DetailScreen extends StatelessWidget {
 //           ],
 //         ),
 //       ),
-//       // body: Container(
-//       //   padding: EdgeInsets.symmetric(horizontal: 30, vertical: 50),
-//       //   child: Column(
-//       //     crossAxisAlignment: CrossAxisAlignment.start,
-//       //     mainAxisAlignment: MainAxisAlignment.start,
-//       //     children: [
-//       //       Center(
-//       //         child: Text(
-//       //           'Login Here',
-//       //           style: TextStyle(
-//       //               fontSize: 30.0,
-//       //               fontWeight: FontWeight.normal,
-//       //               color: Colors.black),
-//       //         ),
-//       //       ),
-//       //       SizedBox(
-//       //         height: 50,
-//       //       ),
-//       //       TextField(
-//       //         decoration: InputDecoration(
-//       //             prefixIcon:  Icon(
-//       //               Icons.person,
-//       //               color: Colors.teal,
-//       //             ),
-//       //             labelText: 'UserName',
-//       //             border: OutlineInputBorder(
-//       //                 borderSide: BorderSide(color: Colors.teal))),
-//       //         keyboardType: TextInputType.text,
-//       //       ),
-//       //       SizedBox(
-//       //         height: 20,
-//       //       ),
-//       //       TextField(
-//       //
-//       //         decoration: InputDecoration(
-//       //             prefixIcon:  Icon(
-//       //               Icons.password_rounded,
-//       //               color: Colors.teal,
-//       //             ),
-//       //             labelText: 'Password',
-//       //             border: OutlineInputBorder(
-//       //                 borderSide: BorderSide(color: Colors.teal))),
-//       //       ),
-//       //       SizedBox(
-//       //         height: 20,
-//       //       ),
-//       //       Row(mainAxisAlignment: MainAxisAlignment.end, children: [
-//       //         RaisedButton(
-//       //           onPressed: () {},
-//       //           child: Text(
-//       //             'Login',
-//       //             style: TextStyle(color: Colors.white),
-//       //           ),
-//       //           color: Colors.teal,
-//       //         ),
-//       //       ]),
-//       //     ],
-//       //   ),
-//       // ),
+//       body: Container(
+//         padding: EdgeInsets.symmetric(horizontal: 30, vertical: 50),
+//         child: Column(
+//           crossAxisAlignment: CrossAxisAlignment.start,
+//           mainAxisAlignment: MainAxisAlignment.start,
+//           children: [
+//             Center(
+//               child: Text(
+//                 'Login Here',
+//                 style: TextStyle(
+//                     fontSize: 30.0,
+//                     fontWeight: FontWeight.normal,
+//                     color: Colors.black),
+//               ),
+//             ),
+//             SizedBox(
+//               height: 50,
+//             ),
+//             TextField(
+//               decoration: InputDecoration(
+//                   prefixIcon:  Icon(
+//                     Icons.person,
+//                     color: Colors.teal,
+//                   ),
+//                   labelText: 'UserName',
+//                   border: OutlineInputBorder(
+//                       borderSide: BorderSide(color: Colors.teal))),
+//               keyboardType: TextInputType.text,
+//             ),
+//             SizedBox(
+//               height: 20,
+//             ),
+//             TextField(
+//
+//               decoration: InputDecoration(
+//                   prefixIcon:  Icon(
+//                     Icons.password_rounded,
+//                     color: Colors.teal,
+//                   ),
+//                   labelText: 'Password',
+//                   border: OutlineInputBorder(
+//                       borderSide: BorderSide(color: Colors.teal))),
+//             ),
+//             SizedBox(
+//               height: 20,
+//             ),
+//             Row(mainAxisAlignment: MainAxisAlignment.end, children: [
+//               RaisedButton(
+//                 onPressed: () {},
+//                 child: Text(
+//                   'Login',
+//                   style: TextStyle(color: Colors.white),
+//                 ),
+//                 color: Colors.teal,
+//               ),
+//             ]),
+//           ],
+//         ),
+//       ),
 //     );
 //   }
 // }
