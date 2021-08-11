@@ -18,8 +18,8 @@ class _ToolTipState extends State<ToolTip> {
             Container(
               margin: EdgeInsets.all(10),
               child: Tooltip(
-                  waitDuration: Duration(seconds: 1),
-                  showDuration: Duration(seconds: 2),
+                  waitDuration: Duration(seconds: 5),
+                  // showDuration: Duration(seconds: 2, minutes: , hours),
                   padding: EdgeInsets.all(5),
                   height: 35,
                   textStyle: TextStyle(

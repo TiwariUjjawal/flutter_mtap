@@ -1,22 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mtap/switch.dart';
-import 'package:flutter_mtap/TooltipExample.dart';
-import './list.dart';
-import './MySliderApp.dart';
+import 'package:flutter_mtap/SecondScreen.dart';
+
+// import 'package:flutter_mtap/switch.dart';
+// import 'package:flutter_mtap/TooltipExample.dart';
+// import './list.dart';
+// import './MySliderApp.dart';
+import './FirstScreen.dart';
 
 void main() => runApp(MaterialApp(
-      // home: MySliderApp(),
-      // home: SwitchExample() // Switch
-      // home: ToolTip(), // Tooltip
+      title: 'Routes',
+      initialRoute: '/',
+      routes: {
+        '/': (context) => FirstScreen(),
+        '/second': (context) => SecondScreen(),
+      },
     ));
 
 // Slider
 
-
 // Switch
 
 // Tooltip
-
 
 // class MyApp extends StatefulWidget {
 //   @override

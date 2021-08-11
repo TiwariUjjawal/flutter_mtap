@@ -23,11 +23,10 @@ class SwitchScreen extends StatefulWidget {
 }
 
 class SwitchClass extends State {
-  bool isSwitched = false;
+  bool isSwitched = true;
   var textValue = 'Switch is OFF';
 
   void toggleSwitch(bool value) {
-
     if(isSwitched == false)
     {
       setState(() {
@@ -50,12 +49,12 @@ class SwitchClass extends State {
         children:[ Transform.scale(
             scale: 2,
             child: Switch(
-              onChanged: toggleSwitch,
-              value: isSwitched,
+              value: isSwitched, // on and off
               activeColor: Colors.blue,
               activeTrackColor: Colors.yellow,
               inactiveThumbColor: Colors.redAccent,
               inactiveTrackColor: Colors.orange,
+              onChanged: toggleSwitch,
             )
         ),
           Text('$textValue', style: TextStyle(fontSize: 20),)
