@@ -7,8 +7,24 @@ class List extends StatelessWidget {
     final wordPair = WordPair.random();
     return MaterialApp(
       title: 'Welcome to Flutter',
-      theme: ThemeData(          // Add the 3 lines from here...
+      theme: ThemeData(
+        // Add the 3 lines from here...
         primaryColor: Colors.white,
+        canvasColor: Colors.white,
+        // colorScheme: ColorScheme(
+        //   brightness: Brightness.dark,
+        //   background: Colors.greenAccent,
+        //   secondaryVariant: Colors.cyan,
+        //   error: Colors.red,
+        //   onBackground: Colors.purple,
+        //   onSecondary: Colors.grey,
+        //   primaryVariant: Colors.purple,
+        //   onSurface: Colors.amber,
+        //   surface: Colors.blue, primary: Colors.lightBlue,
+        //   onPrimary: Colors.black,
+        //   secondary: Colors.blueAccent,
+        //   onError: Colors.grey,
+        // )
       ),
       home: RandomWords(),
     );
@@ -39,7 +55,30 @@ class _RandomWordsState extends State<RandomWords> {
           : <Widget>[];
       return Scaffold(
         appBar: AppBar(
-          title: Text('Saved Suggestions'),
+          shadowColor: Colors.black,
+          brightness: Brightness.dark,
+          elevation: 20,
+          bottomOpacity: 1.0,
+          bottom: PreferredSize(
+            child: Container(
+              margin: EdgeInsets.only(left: 25, right: 25),
+              decoration: BoxDecoration(
+                color: Colors.orange,
+              ),
+              // color: Colors.orange,
+              height: 4,
+            ),
+            preferredSize: Size.fromHeight(4),
+          ),
+          iconTheme: IconThemeData(color: Colors.white),
+          backgroundColor: Colors.deepPurple,
+          title: Text(
+            'Saved Suggestions',
+            style: TextStyle(color: Colors.white),
+          ),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(30),
+          ),
         ),
         body: ListView(children: divided),
       );
@@ -54,9 +93,36 @@ class _RandomWordsState extends State<RandomWords> {
     final wordPair = WordPair.random();
     return Scaffold(
         appBar: AppBar(
-          title: Text('Startup Name Generator'),
+          shadowColor: Colors.black,
+          brightness: Brightness.dark,
+          elevation: 20,
+          bottomOpacity: 1.0,
+          bottom: PreferredSize(
+            child: Container(
+              margin: EdgeInsets.only(left: 25, right: 25),
+              decoration: BoxDecoration(
+                color: Colors.orange,
+              ),
+              // color: Colors.orange,
+              height: 4,
+            ),
+            preferredSize: Size.fromHeight(4),
+          ),
+          backgroundColor: Colors.deepPurple,
+          title: Text(
+            'Startup Name Generator',
+            style: TextStyle(color: Colors.white),
+          ),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(30),
+          ),
           actions: [
-            IconButton(icon: Icon(Icons.list), onPressed: _pushSaved),
+            IconButton(
+                icon: Icon(
+                  Icons.list,
+                  color: Colors.white,
+                ),
+                onPressed: _pushSaved),
           ],
         ),
         body: _buildSuggestions());
