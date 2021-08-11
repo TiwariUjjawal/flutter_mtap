@@ -10,73 +10,147 @@ import 'package:flutter_mtap/selection_screen.dart';
 // import './MySliderApp.dart';
 import './FirstScreen.dart';
 
-void main() => runApp(MaterialApp(
-      title: 'Routes',
-      home: HomeScreen(),
-      routes: {
-        // '/': (context) => FirstScreen(),
-        // '/second': (context) => SecondScreen(),
-        ExtractArgumentsScreen.routeName: (context) => ExtractArgumentsScreen(),
-      },
-      onGenerateRoute: (settings) {
-        if (settings.name == PassArgumentsScreen.routeName) {
-          final args = settings.arguments as ScreenArguments;
-          return MaterialPageRoute(
-            builder: (context) {
-              return PassArgumentsScreen(
-                title: args.title,
-                message: args.message,
-              );
-            },
-          );
-        }
-        assert(false, 'Need to implement ${settings.name}');
-        return null;
-      },
-    ));
+class Todo {
+  final String title;
+  final String description;
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  const Todo(this.title, this.description);
+}
+
+void main() {
+  runApp(
+    MaterialApp(
+      title: 'Passing Data',
+      home: TodosScreen(
+        todos: List.generate(
+          20,
+              (i) => Todo(
+            'Todo $i',
+            'A description of what needs to be done for Todo $i',
+          ),
+        ),
+      ),
+    ),
+  );
+}
+
+class TodosScreen extends StatelessWidget {
+  const TodosScreen({Key? key, required this.todos}) : super(key: key);
+
+  final List<Todo> todos;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Returning Data Demo'),
+        title: const Text('Todos'),
       ),
-      // Create the SelectionButton widget in the next step.
-      body: const Center(
-        child: SelectionButton(),
+      body: ListView.builder(
+        itemCount: todos.length,
+        itemBuilder: (context, index) {
+          return ListTile(
+            title: Text(todos[index].title),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => DetailScreen(todos[index]),
+                ),
+              );
+            },
+          );
+        },
       ),
     );
   }
 }
-class SelectionButton extends StatelessWidget {
-  const SelectionButton({Key? key}) : super(key: key);
 
+class DetailScreen extends StatelessWidget {
+  final Todo todo;
+  DetailScreen(this.todo);
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: () {
-        _navigateAndDisplaySelection(context);
-      },
-      child: const Text('Pick an option, any option!'),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(todo.title),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Text(todo.description),
+      ),
     );
-  }
-
-  void _navigateAndDisplaySelection(BuildContext context) async {
-    // Navigator.push returns a Future that completes after calling
-    // Navigator.pop on the Selection Screen.
-    final result = await Navigator.push(
-      context,
-      // Create the SelectionScreen in the next step.
-      MaterialPageRoute(builder: (context) => const SelectionScreen()),
-    );
-    ScaffoldMessenger.of(context)
-      ..removeCurrentSnackBar()
-      ..showSnackBar(SnackBar(content: Text('$result')));
   }
 }
+
+// void main() => runApp(MaterialApp(
+//       title: 'Routes',
+//       home: HomeScreen(),
+//       routes: {
+//         // '/': (context) => FirstScreen(),
+//         // '/second': (context) => SecondScreen(),
+//         ExtractArgumentsScreen.routeName: (context) => ExtractArgumentsScreen(),
+//       },
+//       onGenerateRoute: (settings) {
+//         if (settings.name == PassArgumentsScreen.routeName) {
+//           final args = settings.arguments as ScreenArguments;
+//           return MaterialPageRoute(
+//             builder: (context) {
+//               return PassArgumentsScreen(
+//                 title: args.title,
+//                 message: args.message,
+//               );
+//             },
+//           );
+//         }
+//         assert(false, 'Need to implement ${settings.name}');
+//         return null;
+//       },
+//     ));
+
+
+//
+// class HomeScreen extends StatelessWidget {
+//   const HomeScreen({Key? key}) : super(key: key);
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: const Text('Returning Data Demo'),
+//       ),
+//       // Create the SelectionButton widget in the next step.
+//       body: const Center(
+//         child: SelectionButton(),
+//       ),
+//     );
+//   }
+// }
+// class SelectionButton extends StatelessWidget {
+//   const SelectionButton({Key? key}) : super(key: key);
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return ElevatedButton(
+//       onPressed: () {
+//         _navigateAndDisplaySelection(context);
+//       },
+//       child: const Text('Pick an option, any option!'),
+//     );
+//   }
+//
+//   void _navigateAndDisplaySelection(BuildContext context) async {
+//     // Navigator.push returns a Future that completes after calling
+//     // Navigator.pop on the Selection Screen.
+//     final result = await Navigator.push(
+//       context,
+//       // Create the SelectionScreen in the next step.
+//       MaterialPageRoute(builder: (context) => const SelectionScreen()),
+//     );
+//     ScaffoldMessenger.of(context)
+//       ..removeCurrentSnackBar()
+//       ..showSnackBar(SnackBar(content: Text('$result')));
+//   }
+// }
 // class MyApp extends StatefulWidget {
 //   @override
 //   _MyAppState createState() => _MyAppState();
