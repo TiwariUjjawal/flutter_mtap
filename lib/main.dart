@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mtap/SecondScreen.dart';
+import 'package:flutter_mtap/database/manager.dart';
 import 'package:flutter_mtap/extract_argument_screen.dart';
 import 'package:flutter_mtap/pass_arguments_screen.dart';
 import 'package:flutter_mtap/selection_screen.dart';
@@ -8,16 +9,17 @@ import './user_screen.dart';
 import 'package:flutter/material.dart';
 import 'Calc.dart';
 
-void main() => runApp(MaterialApp(
-  // home: TextFormFIELD(),
-  initialRoute: '/',
-  routes: {
-    '/': (context) => LoginScreen(),
-    '/calc_screen': (context) => Calc(),
-  },
-));
-
-
+void main() {
+  // mainDb();
+  runApp(MaterialApp(
+    // home: TextFormFIELD(),
+    initialRoute: '/',
+    routes: {
+      '/': (context) => LoginScreen(),
+      '/calc_screen': (context) => Calc(),
+    },
+  ));
+}
 
 // import 'package:flutter_mtap/switch.dart';
 // import 'package:flutter_mtap/TooltipExample.dart';
@@ -121,7 +123,6 @@ void main() => runApp(MaterialApp(
 //         return null;
 //       },
 //     ));
-
 
 //
 // class HomeScreen extends StatelessWidget {
