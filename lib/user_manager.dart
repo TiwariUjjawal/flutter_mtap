@@ -5,7 +5,7 @@ import 'package:sqflite/sqflite.dart';
 
 import 'user.dart';
 
- Future<List<User>> mainDbUser(id, name, email, password) async {
+Future<List<User>> mainDbUser(id, name, email, password) async {
   WidgetsFlutterBinding.ensureInitialized();
 
   // Creating the database.
@@ -40,12 +40,12 @@ import 'user.dart';
 
     return List.generate(
         maps.length,
-            (index) => User(
-          id: maps[index]['id'],
-          name: maps[index]['name'],
-          email: maps[index]['email'],
-          password: maps[index]['password'],
-        ));
+        (index) => User(
+              id: maps[index]['id'],
+              name: maps[index]['name'],
+              email: maps[index]['email'],
+              password: maps[index]['password'],
+            ));
   }
 
 // Updating the users.
@@ -74,10 +74,18 @@ import 'user.dart';
 
   // bool check = false;
   //
-  // Future<void> checkUser(User user) async {
+  // checkUser(User user) async {
   //   final db = await database;
-  //   await db.query('users', where: 'email = ? and password = ?' , whereArgs: [email, password]);
-  //
+  //   final List<Map<String, dynamic>> maps = await db.query('users',
+  //       where: 'email = ? and password = ?', whereArgs: [email, password]);
+  //   return List.generate(
+  //       maps.length,
+  //           (index) => User(
+  //         id: maps[index]['id'],
+  //         name: maps[index]['name'],
+  //         email: maps[index]['email'],
+  //         password: maps[index]['password'],
+  //       ));
   // }
 
   var person = User(
@@ -88,8 +96,12 @@ import 'user.dart';
   );
 
   await insertUser(person);
-
-  print(await getUsers());
+  // var check = await checkUser(person);
+  // if (check.length ==0 || check.isEmpty) {
+  //   await insertUser(person);
+  //   print('Not Added');
+  // }
+  // print(await getUsers());
 
   //declaration
   // var fido = Dog(
