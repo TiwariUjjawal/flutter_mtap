@@ -8,16 +8,17 @@ import './login_screen.dart';
 import './user_screen.dart';
 import 'package:flutter/material.dart';
 import 'Calc.dart';
+import 'key-value/shared_prefrence.dart';
 
 void main() {
   // mainDb();
   runApp(MaterialApp(
-    // home: TextFormFIELD(),
-    initialRoute: '/',
-    routes: {
-      '/': (context) => LoginScreen(),
-      '/calc_screen': (context) => Calc(),
-    },
+    home: Sprefs(),
+    // initialRoute: '/',
+    // routes: {
+    //   '/': (context) => LoginScreen(),
+    //   '/calc_screen': (context) => Calc(),
+    // },
   ));
 }
 
