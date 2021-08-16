@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mtap/user_manager.dart';
+import 'package:flutter_mtap/calc_and_loginScreen/user_manager.dart';
 
 class UserScreen extends StatelessWidget {
   String name;

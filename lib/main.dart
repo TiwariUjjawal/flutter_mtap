@@ -1,24 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mtap/SecondScreen.dart';
-import 'package:flutter_mtap/database/manager.dart';
-import 'package:flutter_mtap/extract_argument_screen.dart';
-import 'package:flutter_mtap/pass_arguments_screen.dart';
-import 'package:flutter_mtap/selection_screen.dart';
-import './login_screen.dart';
-import './user_screen.dart';
-import 'package:flutter/material.dart';
-import 'Calc.dart';
-import 'key-value/shared_prefrence.dart';
+import 'calc_and_loginScreen/login_screen.dart';
+import 'calc_and_loginScreen/Calc.dart';
 
 void main() {
   // mainDb();
   runApp(MaterialApp(
-    home: Sprefs(),
-    // initialRoute: '/',
-    // routes: {
-    //   '/': (context) => LoginScreen(),
-    //   '/calc_screen': (context) => Calc(),
-    // },
+    // home: Sprefs(),
+    initialRoute: '/',
+    routes: {
+      '/': (context) => LoginScreen(),
+      '/calc_screen': (context) => Calc(),
+    },
   ));
 }
 

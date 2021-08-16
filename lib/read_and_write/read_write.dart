@@ -19,19 +19,19 @@ class ContentStorage {
     return directory.path;
   }
 
-  Future<File> get _localFile async {
+  Future<File>  _localFile() async {
     final path = await _localPath;
     return File('$path/content.txt');
   }
 
   Future<File> writeContent(int content) async {
-    final file = await _localFile;
+    final file = await _localFile();
     return file.writeAsString('$content');
   }
 
   Future<int> readContent() async {
     try {
-      final file = await _localFile;
+      final file = await _localFile();
       final contents = await file.readAsString();
       print(contents);
       return int.parse(contents);
