@@ -35,6 +35,8 @@ dependencies:
   path_provider: ^2.0.2
   shared_preferences: ^2.0.6
   video_player: ^2.1.12
+  intl: ^0.17.0
+  location:
 
 dev_dependencies:
   flutter_test:
